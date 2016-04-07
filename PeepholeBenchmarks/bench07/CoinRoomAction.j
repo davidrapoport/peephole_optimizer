@@ -6,15 +6,12 @@
 
 .method public <init>()V
   .limit locals 1
-  .limit stack 3
+  .limit stack 2
   aload_0
   invokenonvirtual RoomAction/<init>()V
-  iconst_0
-  dup
   aload_0
-  swap
+  iconst_0
   putfield CoinRoomAction/taken Z
-  pop
   return
 .end method
 
@@ -23,13 +20,7 @@
   .limit stack 2
   aload_0
   getfield CoinRoomAction/taken Z
-  ifeq true_2
-  iconst_0
-  goto stop_3
-  true_2:
-  iconst_1
-  stop_3:
-  ifeq else_0
+  ifne else_0
   aload_0
   getfield RoomAction/O Ljoos/lib/JoosIO;
   ldc "Ooooooh! Shiny!"
@@ -113,18 +104,15 @@
   invokevirtual joos/lib/JoosIO/print(Ljava/lang/String;)V
   iconst_0
   ireturn
-  goto stop_14
+  goto stop_1
   else_13:
   aload_0
   getfield RoomAction/O Ljoos/lib/JoosIO;
   ldc "You picked up a gold coin! Your coin count: "
   invokevirtual joos/lib/JoosIO/print(Ljava/lang/String;)V
-  iconst_1
-  dup
   aload_0
-  swap
+  iconst_1
   putfield CoinRoomAction/taken Z
-  pop
   iconst_5
   ireturn
   stop_14:
@@ -185,13 +173,7 @@
   iconst_0
   invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
   iconst_0
-  if_icmpge true_27
-  iconst_0
-  goto stop_28
-  true_27:
-  iconst_1
-  stop_28:
-  ifeq else_25
+  if_icmplt else_25
   aload_0
   getfield RoomAction/O Ljoos/lib/JoosIO;
   ldc "You feel flesh being torn from your body. "
@@ -207,6 +189,5 @@
   stop_26:
   stop_16:
   stop_1:
-  nop
 .end method
 

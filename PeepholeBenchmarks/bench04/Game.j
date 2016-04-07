@@ -13,30 +13,24 @@
 
 .method public <init>(LBoard;)V
   .limit locals 2
-  .limit stack 3
+  .limit stack 4
   aload_0
   invokenonvirtual java/lang/Object/<init>()V
   aload_0
   aload_1
   putfield Game/board LBoard;
+  aload_0
   new java/lang/Character
   dup
   ldc 88
   invokenonvirtual java/lang/Character/<init>(C)V
-  dup
-  aload_0
-  swap
   putfield Game/X Ljava/lang/Character;
-  pop
+  aload_0
   new java/lang/Character
   dup
   ldc 79
   invokenonvirtual java/lang/Character/<init>(C)V
-  dup
-  aload_0
-  swap
   putfield Game/O Ljava/lang/Character;
-  pop
   aload_0
   getfield Game/X Ljava/lang/Character;
   dup
@@ -168,9 +162,7 @@
   aload 5
   invokevirtual java/util/Vector/size()I
   invokevirtual java/util/Random/nextInt(I)I
-  dup
   istore_3
-  pop
   goto start_4
   stop_5:
   aload_1
@@ -183,12 +175,7 @@
   invokevirtual java/util/Vector/removeElementAt(I)V
   iconst_0
   istore_3
-  iload_2
-  iconst_1
-  iadd
-  dup
-  istore_2
-  pop
+  iinc 2 1
   goto start_0
   stop_1:
   return
@@ -316,9 +303,7 @@
   iload_2
   iconst_1
   iadd
-  dup
   istore_3
-  pop
   aload_1
   new java/lang/Integer
   dup
@@ -354,12 +339,7 @@
   stop_11:
   invokevirtual java/lang/String/concat(Ljava/lang/String;)Ljava/lang/String;
   invokevirtual joos/lib/JoosIO/println(Ljava/lang/String;)V
-  iload_2
-  iconst_1
-  iadd
-  dup
-  istore_2
-  pop
+  iinc 2 1
   goto start_0
   stop_1:
   return
@@ -423,9 +403,7 @@
   ifne stop_9
   aload_2
   invokevirtual joos/lib/JoosIO/readInt()I
-  dup
   istore 5
-  pop
   iload 5
   iconst_0
   if_icmpgt true_15
@@ -478,9 +456,7 @@
   aload_0
   getfield Game/board LBoard;
   invokevirtual Board/getWidth()I
-  dup
   istore_3
-  pop
   iconst_0
   istore 4
   iconst_0
@@ -506,9 +482,7 @@
   ifne stop_5
   aload_1
   invokevirtual joos/lib/JoosIO/readInt()I
-  dup
   istore_2
-  pop
   iload_2
   iconst_0
   if_icmpgt true_12
@@ -591,16 +565,12 @@
   .limit stack 5
   aload_0
   invokevirtual Game/getColumnChoice()I
-  dup
   istore_2
-  pop
   aload_0
   getfield Game/board LBoard;
   iload_2
   invokevirtual Board/expectedRow(I)I
-  dup
   istore_3
-  pop
   aload_0
   invokevirtual Game/getCurrPlayerMoves()Ljava/util/Vector;
   astore 4
@@ -668,9 +638,7 @@
   ifne stop_1
   aload_1
   invokevirtual joos/lib/JoosIO/readInt()I
-  dup
   istore_2
-  pop
   iload_2
   iconst_1
   if_icmpeq true_7

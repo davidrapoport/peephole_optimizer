@@ -24,12 +24,7 @@
   iload_1
   iload 5
   invokevirtual Board/clear(II)V
-  iload 5
-  iconst_1
-  iadd
-  dup
-  istore 5
-  pop
+  iinc 5 1
   goto start_0
   stop_1:
   return

@@ -23,9 +23,16 @@ int initialized_flag_patterns = 0;
  * 1. Keep a map of CODE* to ints as a "to remove later" queue? But what if it changes?
  * 2.Instead of calling getfield, can we just put it in a register and a/iload it? Can we tell if we need to aload it or 
  * iload it?
- * 3. Check bench03/Board.j.inRange() It seems tohave a check which is exactly like what we look for in "improve_branching"
+ * 3. Check bench04/Board.j.inRange() It seems tohave a check which is exactly like what we look for in "improve_branching"
  * just with a dup. That's probably because in the end all of the things are anded so we need to keep the intermediate computations
  * Maybe there's a way to implement short circuiting?
+ * 4. We should extend field_instantiate_object to allow for 1 or 2 arguments to the object. These are pretty common. 
+ *   Also extend it so that we can instantiate as null? Does that happen often enough? Remember that these arguments can be coming
+ *   from iloads, aloads,  ldc_string, or ldc_int which means there are a total 
+ *   of 4 + 4*4 permutations. That's a lot of typing, is it worth it? NOTE: I did the one arg case, idk if we need the two arg case
+ *   Is it totally sound to remove the dups? We need to see what happens if we want to use the same arg twice in a constructor.
+ *   NOTE: I tested it, it performs two iloads not a dup, so we're fine
+ * 5. The same possible short circuiting improvement (as in 3) exists in bench07/CoinRoomAction.performAction
  */
 
 
@@ -99,6 +106,17 @@ int positive_increment(CODE **c)
       is_istore(next(next(next(*c))),&y) &&
       x==y && 0<=k && k<=127) {
      return replace(c,4,makeCODEiinc(x,k,NULL));
+  }
+  return 0;
+}
+
+int positive_increment_no_store(CODE **c)
+{ int x,k;
+  if (is_iload(*c,&x) &&
+      is_ldc_int(next(*c),&k) &&
+      is_iadd(next(next(*c)))
+      && 0<=k && k<=127) {
+     return replace(c,3,makeCODEiinc(x,k,makeCODEiload(x, NULL)));
   }
   return 0;
 }
@@ -227,24 +245,76 @@ int simplify_field_instantiate_object(CODE **c)
   return 0;
 }
 
+int simplify_field_instantiate_object_one_arg(CODE **c)
+{
+  char *newVar;
+  char *initCall;
+  char *fieldName ;
+  char *string_arg;
+  int int_arg;
+  int zero = -1;
+  if (is_new(*c,&newVar) && is_dup(next(*c)) 
+      && (is_ldc_string(next(next(*c)), &string_arg) || is_ldc_int(next(next(*c)), &int_arg) 
+          || is_iload(next(next(*c)), &int_arg) || is_aload(next(next(*c)), &int_arg))
+      && is_invokenonvirtual(next(next(next(*c))), &initCall)
+      && is_dup(next(next(next(next(*c))))) &&
+      is_aload(next(next(next(next(next(*c))))), &zero) && (zero == 0)
+      && is_swap(next(next(next(next(next((next(*c)))))))) && is_putfield(next(next(next(next(next(next(next(*c))))))), &fieldName)
+      && is_pop(next(next(next(next(next(next(next(next(*c))))))))) )
+  {
+    if(is_ldc_string(next(next(*c)), &string_arg))
+    {
+      /* TODO ensure that initCall really is init call */
+      return replace(c,9, makeCODEaload(0,
+                          makeCODEnew(newVar, 
+                          makeCODEdup(
+                          makeCODEldc_string(string_arg,
+                          makeCODEinvokenonvirtual(initCall,
+                          makeCODEputfield(fieldName, NULL)))))));
+    }
+    else if (is_ldc_int(next(next(*c)), &int_arg) )
+    {
+      return replace(c,9, makeCODEaload(0,
+                          makeCODEnew(newVar, 
+                          makeCODEdup(
+                          makeCODEldc_int(int_arg,
+                          makeCODEinvokenonvirtual(initCall,
+                          makeCODEputfield(fieldName, NULL)))))));
+    }
+    else if (is_iload(next(next(*c)), &int_arg))
+    {
+      return replace(c,9, makeCODEaload(0,
+                          makeCODEnew(newVar, 
+                          makeCODEdup(
+                          makeCODEiload(int_arg,
+                          makeCODEinvokenonvirtual(initCall,
+                          makeCODEputfield(fieldName, NULL)))))));
+    } 
+    else if (is_aload(next(next(*c)), &int_arg))
+    {
+      return replace(c,9, makeCODEaload(0,
+                          makeCODEnew(newVar, 
+                          makeCODEdup(
+                          makeCODEaload(int_arg,
+                          makeCODEinvokenonvirtual(initCall,
+                          makeCODEputfield(fieldName, NULL)))))));
+    }
+  }
+  return 0;
+}
+
 int remove_dup_store_pop(CODE **c)
 {
-  int loaded, variable;
-  char *loaded_str;
-  if(is_ldc_int(*c,&loaded) && is_dup(next(*c)) && is_istore(next(next(*c)), &variable)
-      && is_pop(next(next(next(*c)))))
+  int variable;
+  if( is_dup(*c) && is_istore(next(*c), &variable)
+      && is_pop(next(next(*c))))
   {
-    return replace(c,4, makeCODEldc_int(loaded, makeCODEistore(variable, NULL)));
+    return replace(c,3,makeCODEistore(variable, NULL));
   }
-  else if(is_ldc_string(*c,&loaded_str) && is_dup(next(*c)) && is_istore(next(next(*c)), &variable)
-      && is_pop(next(next(next(*c)))))
+  else if(is_dup(*c) && is_astore(next(*c), &variable)
+      && is_pop(next(next(*c))))
   {
-    return replace(c,4, makeCODEldc_string(loaded_str, makeCODEistore(variable, NULL)));
-  }
-  if(is_aconst_null(*c) && is_dup(next(*c)) && is_astore(next(next(*c)), &variable)
-      && is_pop(next(next(next(*c)))))
-  {
-    return replace(c,4, makeCODEaconst_null(makeCODEastore(variable, NULL)));
+    return replace(c,3, makeCODEastore(variable, NULL));
   }
   return 0;
 }
@@ -622,11 +692,13 @@ int init_patterns()
   ADD_PATTERN(simplify_field_instantiate_string);
   ADD_PATTERN(simplify_field_instantiate_object);
   ADD_PATTERN(simplify_field_instantiate_int_or_arg);
+  ADD_PATTERN(simplify_field_instantiate_object_one_arg);
   ADD_PATTERN(change_to_null_comparison);
   ADD_PATTERN(remove_dup_store_pop);
   ADD_PATTERN(improve_branching2);
   ADD_PATTERN(remove_nop);
   ADD_PATTERN(change_to_zero_comparison); /* Not very useful because the compiler doesnt support iflt */
+  /* ADD_PATTERN(positive_increment_no_store); Makes things worse */
  /* ADD_PATTERN(improve_branching); */
   /*ADD_PATTERN(dropDeadLabels);*/
  /* ADD_PATTERN(remove_consecutive_labels);

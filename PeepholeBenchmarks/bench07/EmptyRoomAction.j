@@ -27,6 +27,5 @@
   aload_1
   invokevirtual RoomAction/performBaseAction(Ljava/lang/String;)I
   ireturn
-  nop
 .end method
 

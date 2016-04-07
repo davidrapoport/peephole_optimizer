@@ -11,22 +11,16 @@
   .limit stack 3
   aload_0
   invokenonvirtual java/lang/Object/<init>()V
+  aload_0
   new joos/lib/JoosIO
   dup
   invokenonvirtual joos/lib/JoosIO/<init>()V
-  dup
-  aload_0
-  swap
   putfield RoomAction/O Ljoos/lib/JoosIO;
-  pop
+  aload_0
   new joos/lib/JoosRandom
   dup
   invokenonvirtual joos/lib/JoosRandom/<init>()V
-  dup
-  aload_0
-  swap
   putfield RoomAction/R Ljoos/lib/JoosRandom;
-  pop
   return
 .end method
 
@@ -51,13 +45,7 @@
   iconst_0
   invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
   iconst_0
-  if_icmpge true_2
-  iconst_0
-  goto stop_3
-  true_2:
-  iconst_1
-  stop_3:
-  ifeq else_0
+  if_icmplt else_0
   goto stop_1
   else_0:
   aload_1
@@ -65,13 +53,7 @@
   iconst_0
   invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
   iconst_0
-  if_icmpge true_6
-  iconst_0
-  goto stop_7
-  true_6:
-  iconst_1
-  stop_7:
-  ifeq else_4
+  if_icmplt else_4
   ldc 11
   ireturn
   goto stop_5
@@ -81,13 +63,7 @@
   iconst_0
   invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
   iconst_0
-  if_icmpge true_10
-  iconst_0
-  goto stop_11
-  true_10:
-  iconst_1
-  stop_11:
-  ifeq else_8
+  if_icmplt else_8
   iconst_4
   ireturn
   goto stop_9
@@ -97,13 +73,7 @@
   iconst_0
   invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
   iconst_0
-  if_icmpge true_14
-  iconst_0
-  goto stop_15
-  true_14:
-  iconst_1
-  stop_15:
-  ifeq else_12
+  if_icmplt else_12
   ldc 6
   ireturn
   goto stop_13
@@ -154,7 +124,6 @@
   stop_1:
   iconst_0
   ireturn
-  nop
 .end method
 
 .method public rand(I)I
@@ -163,28 +132,17 @@
   aload_0
   getfield RoomAction/R Ljoos/lib/JoosRandom;
   invokevirtual joos/lib/JoosRandom/nextInt()I
-  dup
   istore_2
-  pop
   iload_2
   iconst_0
-  if_icmplt true_1
-  iconst_0
-  goto stop_2
-  true_1:
-  iconst_1
-  stop_2:
-  ifeq stop_0
+  if_icmpge stop_0
   iload_2
   ineg
-  dup
   istore_2
-  pop
   stop_0:
   iload_2
   iload_1
   irem
   ireturn
-  nop
 .end method
 

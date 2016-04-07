@@ -15,26 +15,18 @@
   .limit stack 3
   aload_3
   invokevirtual Board/getWidth()I
-  dup
   istore 7
-  pop
   aload_3
   invokevirtual Board/getHeight()I
-  dup
   istore 8
-  pop
   iload_2
   iconst_1
   isub
-  dup
   istore 6
-  pop
   iload_1
   iconst_1
   isub
-  dup
   istore 5
-  pop
   start_0:
   iload 5
   iconst_0
@@ -52,29 +44,21 @@
   iload 6
   iconst_1
   isub
-  dup
   istore 6
-  pop
   iload 5
   iconst_1
   isub
-  dup
   istore 5
-  pop
   goto start_0
   stop_1:
   iload_2
   iconst_1
   isub
-  dup
   istore 6
-  pop
   iload_1
   iconst_1
   iadd
-  dup
   istore 5
-  pop
   start_5:
   iload 5
   iload 7
@@ -92,29 +76,18 @@
   iload 6
   iconst_1
   isub
-  dup
   istore 6
-  pop
-  iload 5
-  iconst_1
-  iadd
-  dup
-  istore 5
-  pop
+  iinc 5 1
   goto start_5
   stop_6:
   iload_2
   iconst_1
   iadd
-  dup
   istore 6
-  pop
   iload_1
   iconst_1
   isub
-  dup
   istore 5
-  pop
   start_10:
   iload 5
   iconst_0
@@ -129,32 +102,21 @@
   iload 6
   invokevirtual Board/clear(II)V
   stop_14:
-  iload 6
-  iconst_1
-  iadd
-  dup
-  istore 6
-  pop
+  iinc 6 1
   iload 5
   iconst_1
   isub
-  dup
   istore 5
-  pop
   goto start_10
   stop_11:
   iload_2
   iconst_1
   iadd
-  dup
   istore 6
-  pop
   iload_1
   iconst_1
   iadd
-  dup
   istore 5
-  pop
   start_15:
   iload 5
   iload 7
@@ -169,18 +131,8 @@
   iload 6
   invokevirtual Board/clear(II)V
   stop_19:
-  iload 6
-  iconst_1
-  iadd
-  dup
-  istore 6
-  pop
-  iload 5
-  iconst_1
-  iadd
-  dup
-  istore 5
-  pop
+  iinc 6 1
+  iinc 5 1
   goto start_15
   stop_16:
   return

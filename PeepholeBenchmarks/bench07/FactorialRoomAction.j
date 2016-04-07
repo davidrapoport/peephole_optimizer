@@ -113,30 +113,18 @@
   new joos/lib/JoosRandom
   dup
   invokenonvirtual joos/lib/JoosRandom/<init>()V
-  dup
   astore_2
-  pop
   aload_2
   invokevirtual joos/lib/JoosRandom/nextInt()I
   ldc 13
   irem
-  dup
   istore_3
-  pop
   iload_3
   iconst_0
-  if_icmplt true_20
-  iconst_0
-  goto stop_21
-  true_20:
-  iconst_1
-  stop_21:
-  ifeq stop_19
+  if_icmpge stop_19
   iload_3
   ineg
-  dup
   istore_3
-  pop
   stop_19:
   aload_0
   getfield RoomAction/O Ljoos/lib/JoosIO;
@@ -191,7 +179,6 @@
   invokevirtual RoomAction/performBaseAction(Ljava/lang/String;)I
   ireturn
   stop_1:
-  nop
 .end method
 
 .method public f(I)I
@@ -231,6 +218,5 @@
   imul
   ireturn
   stop_1:
-  nop
 .end method
 

@@ -12,28 +12,17 @@
 
 .method public testLoop(Ljoos/lib/JoosIO;Z)Ljava/lang/String;
   .limit locals 4
-  .limit stack 2
+  .limit stack 1
   aconst_null
-  dup
   astore_3
-  pop
   iload_2
-  ifeq true_1
-  iconst_0
-  goto stop_2
-  true_1:
-  iconst_1
-  stop_2:
-  ifeq stop_0
+  ifne stop_0
   aload_1
   invokevirtual joos/lib/JoosIO/readLine()Ljava/lang/String;
-  dup
   astore_3
-  pop
   stop_0:
   aload_3
   areturn
-  nop
 .end method
 
 .method public static main([Ljava/lang/String;)V
@@ -42,56 +31,34 @@
   new GrueHunt
   dup
   invokenonvirtual GrueHunt/<init>()V
-  dup
   astore 14
-  pop
   iconst_0
-  dup
   istore 8
-  pop
   ldc "╔═╝┏━┓╻ ╻┏━╸ ║ ║╻ ╻┏┓╻╺┳╸\n║ ║┣┳┛┃ ┃┣╸  ╔═║┃ ┃┃┗┫ ┃ \n══╝╹┗╸┗━┛┗━╸ ╝ ╝┗━┛╹ ╹ ╹ "
-  dup
   astore 11
-  pop
   ldc 20
-  dup
   istore 13
-  pop
   ldc 100
-  dup
   istore 7
-  pop
   new joos/lib/JoosIO
   dup
   invokenonvirtual joos/lib/JoosIO/<init>()V
-  dup
   astore_1
-  pop
   ldc 11
-  dup
   istore 6
-  pop
   new Room
   dup
   aconst_null
   ldc "null"
   iload 6
   invokenonvirtual Room/<init>(LRoom;Ljava/lang/String;I)V
-  dup
   astore 12
-  pop
   iconst_0
-  dup
   istore_2
-  pop
   iconst_0
-  dup
   istore_3
-  pop
   ldc 10
-  dup
   istore 4
-  pop
   aload_1
   ldc "\n"
   dup
@@ -122,12 +89,9 @@
   invokevirtual joos/lib/JoosIO/println(Ljava/lang/String;)V
   aload_1
   invokevirtual joos/lib/JoosIO/readLine()Ljava/lang/String;
-  dup
   astore 9
-  pop
   aload 9
-  aconst_null
-  if_acmpeq true_6
+  ifnull true_6
   iconst_0
   goto stop_7
   true_6:
@@ -142,9 +106,7 @@
   true_5:
   ifeq stop_4
   ldc "Dave"
-  dup
   astore 9
-  pop
   stop_4:
   aload 12
   invokevirtual Room/enterRoom()V
@@ -156,13 +118,7 @@
   dup
   astore 10
   aconst_null
-  if_acmpne true_10
-  iconst_0
-  goto stop_11
-  true_10:
-  iconst_1
-  stop_11:
-  ifeq stop_9
+  if_acmpeq stop_9
   aload_1
   ldc ""
   invokevirtual joos/lib/JoosIO/println(Ljava/lang/String;)V
@@ -171,13 +127,7 @@
   iconst_0
   invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
   iconst_0
-  if_icmpge true_14
-  iconst_0
-  goto stop_15
-  true_14:
-  iconst_1
-  stop_15:
-  ifeq else_12
+  if_icmplt else_12
   aload_1
   ldc "You have given up, "
   dup
@@ -217,9 +167,7 @@
   ldc "You spend the rest of your days wandering this bizarre world. Better luck next time!"
   invokevirtual joos/lib/JoosIO/println(Ljava/lang/String;)V
   iconst_1
-  dup
   istore 8
-  pop
   goto stop_13
   else_12:
   aload 10
@@ -227,36 +175,19 @@
   iconst_0
   invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
   iconst_0
-  if_icmpge true_26
-  iconst_0
-  goto stop_27
-  true_26:
-  iconst_1
-  stop_27:
-  ifeq else_24
+  if_icmplt else_24
   aload 12
   invokevirtual Room/getNorth()LRoom;
-  dup
   astore 15
-  pop
   aload 15
-  aconst_null
-  if_acmpeq true_30
-  iconst_0
-  goto stop_31
-  true_30:
-  iconst_1
-  stop_31:
-  ifeq else_28
+  ifnonnull else_28
   aload_1
   ldc "There is no exit that way."
   invokevirtual joos/lib/JoosIO/println(Ljava/lang/String;)V
-  goto stop_29
+  goto stop_25
   else_28:
   aload 15
-  dup
   astore 12
-  pop
   aload_1
   ldc "You go north."
   invokevirtual joos/lib/JoosIO/println(Ljava/lang/String;)V
@@ -268,36 +199,19 @@
   iconst_0
   invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
   iconst_0
-  if_icmpge true_34
-  iconst_0
-  goto stop_35
-  true_34:
-  iconst_1
-  stop_35:
-  ifeq else_32
+  if_icmplt else_32
   aload 12
   invokevirtual Room/getSouth()LRoom;
-  dup
   astore 15
-  pop
   aload 15
-  aconst_null
-  if_acmpeq true_38
-  iconst_0
-  goto stop_39
-  true_38:
-  iconst_1
-  stop_39:
-  ifeq else_36
+  ifnonnull else_36
   aload_1
   ldc "There is no exit that way."
   invokevirtual joos/lib/JoosIO/println(Ljava/lang/String;)V
-  goto stop_37
+  goto stop_33
   else_36:
   aload 15
-  dup
   astore 12
-  pop
   aload_1
   ldc "You go south."
   invokevirtual joos/lib/JoosIO/println(Ljava/lang/String;)V
@@ -309,36 +223,19 @@
   iconst_0
   invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
   iconst_0
-  if_icmpge true_42
-  iconst_0
-  goto stop_43
-  true_42:
-  iconst_1
-  stop_43:
-  ifeq else_40
+  if_icmplt else_40
   aload 12
   invokevirtual Room/getWest()LRoom;
-  dup
   astore 15
-  pop
   aload 15
-  aconst_null
-  if_acmpeq true_46
-  iconst_0
-  goto stop_47
-  true_46:
-  iconst_1
-  stop_47:
-  ifeq else_44
+  ifnonnull else_44
   aload_1
   ldc "There is no exit that way."
   invokevirtual joos/lib/JoosIO/println(Ljava/lang/String;)V
-  goto stop_45
+  goto stop_41
   else_44:
   aload 15
-  dup
   astore 12
-  pop
   aload_1
   ldc "You go west."
   invokevirtual joos/lib/JoosIO/println(Ljava/lang/String;)V
@@ -350,36 +247,19 @@
   iconst_0
   invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
   iconst_0
-  if_icmpge true_50
-  iconst_0
-  goto stop_51
-  true_50:
-  iconst_1
-  stop_51:
-  ifeq else_48
+  if_icmplt else_48
   aload 12
   invokevirtual Room/getEast()LRoom;
-  dup
   astore 15
-  pop
   aload 15
-  aconst_null
-  if_acmpeq true_54
-  iconst_0
-  goto stop_55
-  true_54:
-  iconst_1
-  stop_55:
-  ifeq else_52
+  ifnonnull else_52
   aload_1
   ldc "There is no exit that way."
   invokevirtual joos/lib/JoosIO/println(Ljava/lang/String;)V
-  goto stop_53
+  goto stop_49
   else_52:
   aload 15
-  dup
   astore 12
-  pop
   aload_1
   ldc "You go east."
   invokevirtual joos/lib/JoosIO/println(Ljava/lang/String;)V
@@ -390,44 +270,22 @@
   invokevirtual Room/getRoomAction()LRoomAction;
   aload 10
   invokevirtual RoomAction/performAction(Ljava/lang/String;)I
-  dup
   istore 5
-  pop
   iload 5
   iconst_0
-  if_icmpeq true_58
-  iconst_0
-  goto stop_59
-  true_58:
-  iconst_1
-  stop_59:
-  ifeq else_56
+  if_icmpne else_56
   goto stop_57
   else_56:
   iload 5
   iconst_1
-  if_icmpeq true_62
+  if_icmpne else_60
   iconst_0
-  goto stop_63
-  true_62:
-  iconst_1
-  stop_63:
-  ifeq else_60
-  iconst_0
-  dup
   istore 4
-  pop
   goto stop_61
   else_60:
   iload 5
   iconst_2
-  if_icmpeq true_66
-  iconst_0
-  goto stop_67
-  true_66:
-  iconst_1
-  stop_67:
-  ifeq else_64
+  if_icmpne else_64
   aload_1
   aload 9
   dup
@@ -451,19 +309,10 @@
   else_64:
   iload 5
   iconst_3
-  if_icmpeq true_74
-  iconst_0
-  goto stop_75
-  true_74:
-  iconst_1
-  stop_75:
-  ifeq else_72
+  if_icmpne else_72
+  iinc 3 1
   iload_3
-  iconst_1
-  iadd
-  dup
   istore_3
-  pop
   aload_1
   ldc "You have "
   dup
@@ -500,13 +349,7 @@
   else_72:
   iload 5
   iconst_4
-  if_icmpeq true_86
-  iconst_0
-  goto stop_87
-  true_86:
-  iconst_1
-  stop_87:
-  ifeq else_84
+  if_icmpne else_84
   aload_1
   ldc "You have "
   dup
@@ -543,19 +386,10 @@
   else_84:
   iload 5
   iconst_5
-  if_icmpeq true_98
-  iconst_0
-  goto stop_99
-  true_98:
-  iconst_1
-  stop_99:
-  ifeq else_96
+  if_icmpne else_96
+  iinc 2 1
   iload_2
-  iconst_1
-  iadd
-  dup
   istore_2
-  pop
   aload_1
   ldc "You have "
   dup
@@ -592,13 +426,7 @@
   else_96:
   iload 5
   ldc 6
-  if_icmpeq true_110
-  iconst_0
-  goto stop_111
-  true_110:
-  iconst_1
-  stop_111:
-  ifeq else_108
+  if_icmpne else_108
   aload_1
   ldc "You have "
   dup
@@ -635,81 +463,41 @@
   else_108:
   iload 5
   ldc 7
-  if_icmpeq true_122
-  iconst_0
-  goto stop_123
-  true_122:
-  iconst_1
-  stop_123:
-  ifeq else_120
+  if_icmpne else_120
+  iinc 4 1
   iload 4
-  iconst_1
-  iadd
-  dup
   istore 4
-  pop
   goto stop_121
   else_120:
   iload 5
   ldc 8
-  if_icmpeq true_126
-  iconst_0
-  goto stop_127
-  true_126:
-  iconst_1
-  stop_127:
-  ifeq else_124
+  if_icmpne else_124
+  iinc 4 2
   iload 4
-  iconst_2
-  iadd
-  dup
   istore 4
-  pop
   goto stop_125
   else_124:
   iload 5
   ldc 9
-  if_icmpeq true_130
-  iconst_0
-  goto stop_131
-  true_130:
-  iconst_1
-  stop_131:
-  ifeq else_128
+  if_icmpne else_128
   iload 4
   iconst_1
   isub
-  dup
   istore 4
-  pop
   goto stop_129
   else_128:
   iload 5
   ldc 10
-  if_icmpeq true_134
-  iconst_0
-  goto stop_135
-  true_134:
-  iconst_1
-  stop_135:
-  ifeq else_132
+  if_icmpne else_132
   iload 4
   iconst_2
   isub
-  dup
   istore 4
-  pop
   goto stop_133
   else_132:
   iload 5
   ldc 11
-  if_icmpeq true_138
-  iconst_0
-  goto stop_139
-  true_138:
-  iconst_1
-  stop_139:
-  ifeq else_136
+  if_icmpne else_136
   aload_1
   ldc "You have "
   dup
@@ -746,28 +534,14 @@
   else_136:
   iload 5
   ldc 12
-  if_icmpeq true_149
-  iconst_0
-  goto stop_150
-  true_149:
-  iconst_1
-  stop_150:
-  ifeq stop_148
+  if_icmpne stop_148
   aload 12
   ldc 100
   invokevirtual Room/randomRange(I)I
-  dup
   istore 7
-  pop
   iload 7
   iload 13
-  if_icmplt true_153
-  iconst_0
-  goto stop_154
-  true_153:
-  iconst_1
-  stop_154:
-  ifeq else_151
+  if_icmpge else_151
   aload_1
   ldc "You've escaped this bizarre world! You are now free."
   invokevirtual joos/lib/JoosIO/println(Ljava/lang/String;)V
@@ -776,22 +550,12 @@
   iload 6
   iconst_1
   isub
-  dup
   istore 6
-  pop
   iload 6
   iconst_5
-  if_icmpeq true_156
-  iconst_0
-  goto stop_157
-  true_156:
-  iconst_1
-  stop_157:
-  ifeq stop_155
+  if_icmpne stop_155
   ldc 11
-  dup
   istore 6
-  pop
   stop_155:
   new Room
   dup
@@ -799,9 +563,7 @@
   ldc "null"
   iload 6
   invokenonvirtual Room/<init>(LRoom;Ljava/lang/String;I)V
-  dup
   astore 12
-  pop
   aload_1
   ldc "You suddenly notice the new place you find yourself."
   invokevirtual joos/lib/JoosIO/println(Ljava/lang/String;)V
@@ -821,27 +583,13 @@
   stop_57:
   iload 4
   ldc 15
-  if_icmpgt true_159
-  iconst_0
-  goto stop_160
-  true_159:
-  iconst_1
-  stop_160:
-  ifeq stop_158
+  if_icmple stop_158
   ldc 15
-  dup
   istore 4
-  pop
   stop_158:
   iload 4
   iconst_1
-  if_icmplt true_162
-  iconst_0
-  goto stop_163
-  true_162:
-  iconst_1
-  stop_163:
-  ifeq stop_161
+  if_icmpge stop_161
   aload_1
   ldc "\n\n"
   dup
@@ -878,27 +626,15 @@
   invokevirtual java/lang/String/concat(Ljava/lang/String;)Ljava/lang/String;
   invokevirtual joos/lib/JoosIO/println(Ljava/lang/String;)V
   iconst_0
-  dup
   istore 4
-  pop
   iconst_1
-  dup
   istore 8
-  pop
   stop_161:
   iload 7
   iload 13
-  if_icmplt true_173
-  iconst_0
-  goto stop_174
-  true_173:
+  if_icmpge stop_172
   iconst_1
-  stop_174:
-  ifeq stop_172
-  iconst_1
-  dup
   istore 8
-  pop
   stop_172:
   stop_49:
   stop_41:
@@ -906,13 +642,7 @@
   stop_25:
   stop_13:
   iload 8
-  ifeq true_176
-  iconst_0
-  goto stop_177
-  true_176:
-  iconst_1
-  stop_177:
-  ifeq stop_175
+  ifne stop_175
   aload_1
   ldc ""
   invokevirtual joos/lib/JoosIO/println(Ljava/lang/String;)V
