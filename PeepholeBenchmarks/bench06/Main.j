@@ -21,162 +21,104 @@
   dup
   iconst_1
   invokenonvirtual joos/lib/JoosRandom/<init>(I)V
-  dup
   astore 15
-  pop
   new ComplementsGenerator
   dup
   invokenonvirtual ComplementsGenerator/<init>()V
-  dup
   astore 16
-  pop
   new AmazingCalculator
   dup
   invokenonvirtual AmazingCalculator/<init>()V
-  dup
   astore 17
-  pop
   new joos/lib/JoosIO
   dup
   invokenonvirtual joos/lib/JoosIO/<init>()V
-  dup
   astore 11
-  pop
   aload 11
   ldc "Please enter your input.\n"
   invokevirtual joos/lib/JoosIO/println(Ljava/lang/String;)V
   aload 11
   invokevirtual joos/lib/JoosIO/readLine()Ljava/lang/String;
-  dup
   astore 12
-  pop
   new java/util/StringTokenizer
   dup
   aload 12
   invokenonvirtual java/util/StringTokenizer/<init>(Ljava/lang/String;)V
-  dup
   astore 13
-  pop
   aload 13
   ldc ","
   invokevirtual java/util/StringTokenizer/nextToken(Ljava/lang/String;)Ljava/lang/String;
-  dup
   astore 14
-  pop
   aload 14
   ldc "random"
   invokevirtual java/lang/String/equals(Ljava/lang/Object;)Z
-  ifeq true_2
-  iconst_0
-  goto stop_3
-  true_2:
-  iconst_1
-  stop_3:
-  ifeq else_0
+  ifne else_0
   aload 14
-  dup
   astore 4
-  pop
   aload 13
   ldc ","
   invokevirtual java/util/StringTokenizer/nextToken(Ljava/lang/String;)Ljava/lang/String;
-  dup
   astore 5
-  pop
   aload 13
   ldc ","
   invokevirtual java/util/StringTokenizer/nextToken(Ljava/lang/String;)Ljava/lang/String;
-  dup
   astore 6
-  pop
   aload 13
   ldc ","
   invokevirtual java/util/StringTokenizer/nextToken(Ljava/lang/String;)Ljava/lang/String;
-  dup
   astore 18
-  pop
   goto stop_1
   else_0:
   aload 16
   invokevirtual ComplementsGenerator/generateAdjective()Ljava/lang/String;
-  dup
   astore 4
-  pop
   aload 16
   invokevirtual ComplementsGenerator/generateNoun()Ljava/lang/String;
-  dup
   astore 5
-  pop
   aload 16
   invokevirtual ComplementsGenerator/generateVerb()Ljava/lang/String;
-  dup
   astore 6
-  pop
   aload 13
   ldc ","
   invokevirtual java/util/StringTokenizer/nextToken(Ljava/lang/String;)Ljava/lang/String;
-  dup
   astore 18
-  pop
   stop_1:
   new java/lang/Integer
   dup
   aload 18
   invokenonvirtual java/lang/Integer/<init>(Ljava/lang/String;)V
   invokevirtual java/lang/Integer/intValue()I
-  dup
   istore 9
-  pop
   aload 16
   aload 4
   aload 6
   aload 5
   invokevirtual ComplementsGenerator/generateComment(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-  dup
   astore 7
-  pop
   iconst_2
-  dup
   istore_1
-  pop
   aload 15
   invokevirtual joos/lib/JoosRandom/nextInt()I
   iload_1
   irem
-  dup
   istore 10
-  pop
   iload 10
   iconst_0
-  if_icmpeq true_6
-  iconst_0
-  goto stop_7
-  true_6:
-  iconst_1
-  stop_7:
-  ifeq else_4
+  if_icmpne else_4
   new GirlFriend
   dup
   invokenonvirtual GirlFriend/<init>()V
-  dup
   astore_3
-  pop
   ldc "girl-friend"
-  dup
   astore_2
-  pop
   goto stop_5
   else_4:
   new FemaleBoss
   dup
   invokenonvirtual FemaleBoss/<init>()V
-  dup
   astore_3
-  pop
   ldc "boss"
-  dup
   astore_2
-  pop
   stop_5:
   aload_3
   aload 16
@@ -188,9 +130,7 @@
   aload 5
   aload 6
   invokevirtual Woman/react(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-  dup
   astore 8
-  pop
   aload 11
   ldc "You have just told your "
   dup

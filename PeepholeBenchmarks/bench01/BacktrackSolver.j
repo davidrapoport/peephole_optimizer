@@ -75,8 +75,6 @@
   ireturn
   stop_4:
   iinc 3 1
-  iload_3
-  istore_3
   goto start_0
   stop_1:
   iconst_1
@@ -102,8 +100,6 @@
   ireturn
   stop_4:
   iinc 3 1
-  iload_3
-  istore_3
   goto start_0
   stop_1:
   iconst_1
@@ -151,13 +147,9 @@
   ireturn
   stop_8:
   iinc 5 1
-  iload 5
-  istore 5
   goto start_4
   stop_5:
   iinc 4 1
-  iload 4
-  istore 4
   goto start_0
   stop_1:
   iconst_1
@@ -189,13 +181,9 @@
   ireturn
   stop_8:
   iinc 2 1
-  iload_2
-  istore_2
   goto start_4
   stop_5:
   iinc 1 1
-  iload_1
-  istore_1
   goto start_0
   stop_1:
   iconst_1
@@ -265,8 +253,6 @@
   invokevirtual BacktrackSolver/next(II)V
   stop_9:
   iinc 3 1
-  iload_3
-  istore_3
   goto start_5
   stop_6:
   aload_0
@@ -284,20 +270,22 @@
 
 .method public next(II)V
   .limit locals 3
-  .limit stack 3
+  .limit stack 4
   iload_2
   ldc 8
   if_icmpge else_0
   aload_0
   iload_1
-  iinc 2 1
   iload_2
+  iconst_1
+  iadd
   invokevirtual BacktrackSolver/solveCell(II)V
   goto stop_1
   else_0:
   aload_0
-  iinc 1 1
   iload_1
+  iconst_1
+  iadd
   iconst_0
   invokevirtual BacktrackSolver/solveCell(II)V
   stop_1:

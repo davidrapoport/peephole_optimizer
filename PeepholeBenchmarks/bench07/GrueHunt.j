@@ -311,8 +311,6 @@
   iconst_3
   if_icmpne else_72
   iinc 3 1
-  iload_3
-  istore_3
   aload_1
   ldc "You have "
   dup
@@ -388,8 +386,6 @@
   iconst_5
   if_icmpne else_96
   iinc 2 1
-  iload_2
-  istore_2
   aload_1
   ldc "You have "
   dup
@@ -465,16 +461,12 @@
   ldc 7
   if_icmpne else_120
   iinc 4 1
-  iload 4
-  istore 4
   goto stop_121
   else_120:
   iload 5
   ldc 8
   if_icmpne else_124
   iinc 4 2
-  iload 4
-  istore 4
   goto stop_125
   else_124:
   iload 5

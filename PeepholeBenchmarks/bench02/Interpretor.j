@@ -63,13 +63,7 @@
   aload_1
   ldc "HAI"
   invokevirtual java/lang/String/equals(Ljava/lang/Object;)Z
-  ifeq true_2
-  iconst_0
-  goto stop_3
-  true_2:
-  iconst_1
-  stop_3:
-  ifeq else_0
+  ifne else_0
   aload_0
   ldc "Program must start with 'HAI'"
   invokevirtual Interpretor/crashed(Ljava/lang/String;)V
@@ -180,13 +174,7 @@
   .limit stack 4
   aload_0
   getfield Interpretor/ioImported Z
-  ifeq true_1
-  iconst_0
-  goto stop_2
-  true_1:
-  iconst_1
-  stop_2:
-  ifeq stop_0
+  ifne stop_0
   aload_0
   ldc "Can not execute VISIBLE with out stdio"
   invokevirtual Interpretor/crashed(Ljava/lang/String;)V
@@ -215,13 +203,7 @@
   aload_1
   ldc "CAN HAS STDIO?"
   invokevirtual java/lang/String/equals(Ljava/lang/Object;)Z
-  ifeq true_1
-  iconst_0
-  goto stop_2
-  true_1:
-  iconst_1
-  stop_2:
-  ifeq stop_0
+  ifne stop_0
   aload_0
   ldc "Only module 'STDIO' is supported"
   invokevirtual Interpretor/crashed(Ljava/lang/String;)V

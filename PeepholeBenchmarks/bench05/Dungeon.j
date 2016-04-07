@@ -10,20 +10,14 @@
   .limit stack 3
   aload_0
   invokenonvirtual java/lang/Object/<init>()V
-  aload_1
-  dup
   aload_0
-  swap
+  aload_1
   putfield Dungeon/infos LDungeonInfos;
-  pop
+  aload_0
   new java/util/Vector
   dup
   invokenonvirtual java/util/Vector/<init>()V
-  dup
-  aload_0
-  swap
   putfield Dungeon/output Ljava/util/Vector;
-  pop
   return
 .end method
 
@@ -35,24 +29,14 @@
   aload_0
   getfield Dungeon/infos LDungeonInfos;
   invokevirtual DungeonInfos/getMonsters()Ljava/util/Vector;
-  dup
   astore 5
-  pop
   iconst_0
-  dup
   istore_2
-  pop
   start_0:
   iload_2
   aload 5
   invokevirtual java/util/Vector/size()I
-  if_icmplt true_2
-  iconst_0
-  goto stop_3
-  true_2:
-  iconst_1
-  stop_3:
-  ifeq stop_1
+  if_icmpge stop_1
   aload_0
   ldc "M"
   aload 5
@@ -60,35 +44,20 @@
   invokevirtual java/util/Vector/elementAt(I)Ljava/lang/Object;
   checkcast CustomPoint
   invokevirtual Dungeon/createItem(Ljava/lang/String;LCustomPoint;)V
-  iload_2
-  iconst_1
-  iadd
-  dup
-  istore_2
-  pop
+  iinc 2 1
   goto start_0
   stop_1:
   aload_0
   getfield Dungeon/infos LDungeonInfos;
   invokevirtual DungeonInfos/getUpstairs()Ljava/util/Vector;
-  dup
   astore 5
-  pop
   iconst_0
-  dup
   istore_2
-  pop
   start_4:
   iload_2
   aload 5
   invokevirtual java/util/Vector/size()I
-  if_icmplt true_6
-  iconst_0
-  goto stop_7
-  true_6:
-  iconst_1
-  stop_7:
-  ifeq stop_5
+  if_icmpge stop_5
   aload_0
   ldc "U"
   aload 5
@@ -96,35 +65,20 @@
   invokevirtual java/util/Vector/elementAt(I)Ljava/lang/Object;
   checkcast CustomPoint
   invokevirtual Dungeon/createItem(Ljava/lang/String;LCustomPoint;)V
-  iload_2
-  iconst_1
-  iadd
-  dup
-  istore_2
-  pop
+  iinc 2 1
   goto start_4
   stop_5:
   aload_0
   getfield Dungeon/infos LDungeonInfos;
   invokevirtual DungeonInfos/getDownstairs()Ljava/util/Vector;
-  dup
   astore 5
-  pop
   iconst_0
-  dup
   istore_2
-  pop
   start_8:
   iload_2
   aload 5
   invokevirtual java/util/Vector/size()I
-  if_icmplt true_10
-  iconst_0
-  goto stop_11
-  true_10:
-  iconst_1
-  stop_11:
-  ifeq stop_9
+  if_icmpge stop_9
   aload_0
   ldc "D"
   aload 5
@@ -132,35 +86,20 @@
   invokevirtual java/util/Vector/elementAt(I)Ljava/lang/Object;
   checkcast CustomPoint
   invokevirtual Dungeon/createItem(Ljava/lang/String;LCustomPoint;)V
-  iload_2
-  iconst_1
-  iadd
-  dup
-  istore_2
-  pop
+  iinc 2 1
   goto start_8
   stop_9:
   aload_0
   getfield Dungeon/infos LDungeonInfos;
   invokevirtual DungeonInfos/getTreasures()Ljava/util/Vector;
-  dup
   astore 5
-  pop
   iconst_0
-  dup
   istore_2
-  pop
   start_12:
   iload_2
   aload 5
   invokevirtual java/util/Vector/size()I
-  if_icmplt true_14
-  iconst_0
-  goto stop_15
-  true_14:
-  iconst_1
-  stop_15:
-  ifeq stop_13
+  if_icmpge stop_13
   aload_0
   ldc "T"
   aload 5
@@ -168,35 +107,20 @@
   invokevirtual java/util/Vector/elementAt(I)Ljava/lang/Object;
   checkcast CustomPoint
   invokevirtual Dungeon/createItem(Ljava/lang/String;LCustomPoint;)V
-  iload_2
-  iconst_1
-  iadd
-  dup
-  istore_2
-  pop
+  iinc 2 1
   goto start_12
   stop_13:
   aload_0
   getfield Dungeon/infos LDungeonInfos;
   invokevirtual DungeonInfos/getHeros()Ljava/util/Vector;
-  dup
   astore 5
-  pop
   iconst_0
-  dup
   istore_2
-  pop
   start_16:
   iload_2
   aload 5
   invokevirtual java/util/Vector/size()I
-  if_icmplt true_18
-  iconst_0
-  goto stop_19
-  true_18:
-  iconst_1
-  stop_19:
-  ifeq stop_17
+  if_icmpge stop_17
   aload_0
   ldc "H"
   aload 5
@@ -204,60 +128,35 @@
   invokevirtual java/util/Vector/elementAt(I)Ljava/lang/Object;
   checkcast CustomPoint
   invokevirtual Dungeon/createItem(Ljava/lang/String;LCustomPoint;)V
-  iload_2
-  iconst_1
-  iadd
-  dup
-  istore_2
-  pop
+  iinc 2 1
   goto start_16
   stop_17:
   new joos/lib/JoosIO
   dup
   invokenonvirtual joos/lib/JoosIO/<init>()V
-  dup
   astore_1
-  pop
   aload_0
   getfield Dungeon/infos LDungeonInfos;
   invokevirtual DungeonInfos/getDimension()LCustomPoint;
-  dup
   astore 4
-  pop
   iconst_0
-  dup
   istore_2
-  pop
   start_20:
   iload_2
   aload 4
   invokevirtual CustomPoint/getY()I
   iconst_2
   iadd
-  if_icmplt true_22
+  if_icmpge stop_21
   iconst_0
-  goto stop_23
-  true_22:
-  iconst_1
-  stop_23:
-  ifeq stop_21
-  iconst_0
-  dup
   istore_3
-  pop
   start_24:
   iload_3
   aload 4
   invokevirtual CustomPoint/getX()I
   iconst_2
   iadd
-  if_icmplt true_26
-  iconst_0
-  goto stop_27
-  true_26:
-  iconst_1
-  stop_27:
-  ifeq stop_25
+  if_icmpge stop_25
   aload_1
   aload_0
   getfield Dungeon/output Ljava/util/Vector;
@@ -268,23 +167,13 @@
   invokevirtual java/util/Vector/elementAt(I)Ljava/lang/Object;
   invokevirtual java/lang/Object/toString()Ljava/lang/String;
   invokevirtual joos/lib/JoosIO/print(Ljava/lang/String;)V
-  iload_3
-  iconst_1
-  iadd
-  dup
-  istore_3
-  pop
+  iinc 3 1
   goto start_24
   stop_25:
   aload_1
   ldc ""
   invokevirtual joos/lib/JoosIO/println(Ljava/lang/String;)V
-  iload_2
-  iconst_1
-  iadd
-  dup
-  istore_2
-  pop
+  iinc 2 1
   goto start_20
   stop_21:
   return
@@ -296,49 +185,29 @@
   aload_0
   getfield Dungeon/infos LDungeonInfos;
   invokevirtual DungeonInfos/getDimension()LCustomPoint;
-  dup
   astore_3
-  pop
   iconst_0
-  dup
   istore_1
-  pop
   start_0:
   iload_1
   aload_3
   invokevirtual CustomPoint/getY()I
   iconst_2
   iadd
-  if_icmplt true_2
-  iconst_0
-  goto stop_3
-  true_2:
-  iconst_1
-  stop_3:
-  ifeq stop_1
+  if_icmpge stop_1
   new java/util/Vector
   dup
   invokenonvirtual java/util/Vector/<init>()V
-  dup
   astore 4
-  pop
   iconst_0
-  dup
   istore_2
-  pop
   start_4:
   iload_2
   aload_3
   invokevirtual CustomPoint/getX()I
   iconst_2
   iadd
-  if_icmplt true_6
-  iconst_0
-  goto stop_7
-  true_6:
-  iconst_1
-  stop_7:
-  ifeq stop_5
+  if_icmpge stop_5
   iload_1
   iconst_0
   if_icmpeq true_14
@@ -513,24 +382,14 @@
   stop_41:
   stop_34:
   stop_9:
-  iload_2
-  iconst_1
-  iadd
-  dup
-  istore_2
-  pop
+  iinc 2 1
   goto start_4
   stop_5:
   aload_0
   getfield Dungeon/output Ljava/util/Vector;
   aload 4
   invokevirtual java/util/Vector/addElement(Ljava/lang/Object;)V
-  iload_1
-  iconst_1
-  iadd
-  dup
-  istore_1
-  pop
+  iinc 1 1
   goto start_0
   stop_1:
   return
@@ -545,9 +404,7 @@
   invokevirtual CustomPoint/getY()I
   invokevirtual java/util/Vector/elementAt(I)Ljava/lang/Object;
   checkcast java/util/Vector
-  dup
   astore_3
-  pop
   aload_3
   aload_1
   aload_2

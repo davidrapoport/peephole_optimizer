@@ -16,13 +16,7 @@
   aload_0
   getfield Woman/complementNumber I
   iconst_0
-  if_icmpeq true_2
-  iconst_0
-  goto stop_3
-  true_2:
-  iconst_1
-  stop_3:
-  ifeq else_0
+  if_icmpne else_0
   aload_2
   ldc "beautiful"
   invokevirtual java/lang/String/equals(Ljava/lang/Object;)Z
@@ -63,7 +57,7 @@
   ifeq else_4
   ldc "that's the best complement a man has ever gave me!"
   areturn
-  goto stop_5
+  goto stop_1
   else_4:
   aload_3
   ldc "raccoon"
@@ -89,13 +83,7 @@
   aload_0
   getfield Woman/complementNumber I
   iconst_1
-  if_icmpeq true_17
-  iconst_0
-  goto stop_18
-  true_17:
-  iconst_1
-  stop_18:
-  ifeq else_15
+  if_icmpne else_15
   aload_3
   ldc "skin"
   invokevirtual java/lang/String/equals(Ljava/lang/Object;)Z
@@ -116,7 +104,7 @@
   ifeq else_19
   ldc "you touched the very botttom of my soul."
   areturn
-  goto stop_20
+  goto stop_16
   else_19:
   aload_3
   ldc "niece"
@@ -135,13 +123,7 @@
   aload_0
   getfield Woman/complementNumber I
   iconst_2
-  if_icmpeq true_27
-  iconst_0
-  goto stop_28
-  true_27:
-  iconst_1
-  stop_28:
-  ifeq else_25
+  if_icmpne else_25
   aload_3
   ldc "dream"
   invokevirtual java/lang/String/equals(Ljava/lang/Object;)Z
@@ -162,7 +144,7 @@
   ifeq else_29
   ldc "My oh my, what a gentelmen.."
   areturn
-  goto stop_30
+  goto stop_26
   else_29:
   aload_3
   ldc "raccoon"
@@ -188,13 +170,7 @@
   aload_0
   getfield Woman/complementNumber I
   iconst_3
-  if_icmpeq true_38
-  iconst_0
-  goto stop_39
-  true_38:
-  iconst_1
-  stop_39:
-  ifeq else_36
+  if_icmpne else_36
   aload_2
   ldc "dead"
   invokevirtual java/lang/String/equals(Ljava/lang/Object;)Z
@@ -236,7 +212,7 @@
   ifeq else_40
   ldc "You are the man of my dreams (-: "
   areturn
-  goto stop_41
+  goto stop_37
   else_40:
   aload 4
   ldc "eat-bananas"
@@ -262,13 +238,7 @@
   aload_0
   getfield Woman/complementNumber I
   iconst_4
-  if_icmpeq true_52
-  iconst_0
-  goto stop_53
-  true_52:
-  iconst_1
-  stop_53:
-  ifeq else_50
+  if_icmpne else_50
   aload_3
   ldc "niece"
   invokevirtual java/lang/String/equals(Ljava/lang/Object;)Z
@@ -303,7 +273,7 @@
   ifeq else_54
   ldc "take me, I'm yours!"
   areturn
-  goto stop_55
+  goto stop_51
   else_54:
   aload_3
   ldc "fruit"
@@ -322,13 +292,7 @@
   aload_0
   getfield Woman/complementNumber I
   iconst_5
-  if_icmpeq true_64
-  iconst_0
-  goto stop_65
-  true_64:
-  iconst_1
-  stop_65:
-  ifeq else_62
+  if_icmpne else_62
   aload_3
   ldc "tragedy"
   invokevirtual java/lang/String/equals(Ljava/lang/Object;)Z
@@ -339,12 +303,12 @@
   ifeq else_68
   ldc "that's the best complement a man has ever gave me!"
   areturn
-  goto stop_69
+  goto stop_63
   else_68:
   ldc "that's a bit weird, but good enough.."
   areturn
   stop_69:
-  goto stop_67
+  goto stop_63
   else_66:
   aload_3
   ldc "fruit"
@@ -370,13 +334,7 @@
   aload_0
   getfield Woman/complementNumber I
   ldc 6
-  if_icmpeq true_75
-  iconst_0
-  goto stop_76
-  true_75:
-  iconst_1
-  stop_76:
-  ifeq else_73
+  if_icmpne else_73
   aload_2
   ldc "beautifull"
   invokevirtual java/lang/String/equals(Ljava/lang/Object;)Z
@@ -411,7 +369,7 @@
   ifeq else_77
   ldc "damn, you are god. take me home with you."
   areturn
-  goto stop_78
+  goto stop_74
   else_77:
   aload 4
   ldc "rot"
@@ -430,20 +388,14 @@
   aload_0
   getfield Woman/complementNumber I
   ldc 7
-  if_icmpeq true_87
-  iconst_0
-  goto stop_88
-  true_87:
-  iconst_1
-  stop_88:
-  ifeq else_85
+  if_icmpne else_85
   aload_2
   ldc "better"
   invokevirtual java/lang/String/equals(Ljava/lang/Object;)Z
   ifeq else_89
   ldc "that's a bit wierd, but not to bad.."
   areturn
-  goto stop_90
+  goto stop_86
   else_89:
   aload_2
   ldc "dead"
@@ -469,13 +421,7 @@
   aload_0
   getfield Woman/complementNumber I
   ldc 8
-  if_icmpeq true_96
-  iconst_0
-  goto stop_97
-  true_96:
-  iconst_1
-  stop_97:
-  ifeq else_94
+  if_icmpne else_94
   aload_2
   ldc "enormous"
   invokevirtual java/lang/String/equals(Ljava/lang/Object;)Z
@@ -496,7 +442,7 @@
   ifeq else_98
   ldc "you are amazing!"
   areturn
-  goto stop_99
+  goto stop_95
   else_98:
   aload_3
   ldc "raccoon"
@@ -522,13 +468,7 @@
   aload_0
   getfield Woman/complementNumber I
   ldc 9
-  if_icmpeq true_107
-  iconst_0
-  goto stop_108
-  true_107:
-  iconst_1
-  stop_108:
-  ifeq else_105
+  if_icmpne else_105
   aload_2
   ldc "beautiful"
   invokevirtual java/lang/String/equals(Ljava/lang/Object;)Z
@@ -542,7 +482,7 @@
   ifeq else_109
   ldc "A strange proposal, but whu not!"
   areturn
-  goto stop_110
+  goto stop_106
   else_109:
   ldc "you are out of line here, mister."
   areturn
@@ -552,13 +492,7 @@
   aload_0
   getfield Woman/complementNumber I
   ldc 10
-  if_icmpeq true_114
-  iconst_0
-  goto stop_115
-  true_114:
-  iconst_1
-  stop_115:
-  ifeq else_112
+  if_icmpne else_112
   aload_2
   ldc "skin"
   invokevirtual java/lang/String/equals(Ljava/lang/Object;)Z
@@ -572,7 +506,7 @@
   ifeq else_116
   ldc "you are a complement mechine!"
   areturn
-  goto stop_117
+  goto stop_113
   else_116:
   aload_3
   ldc "raccoon"
@@ -624,6 +558,5 @@
   stop_26:
   stop_16:
   stop_1:
-  nop
 .end method
 

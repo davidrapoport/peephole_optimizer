@@ -22,54 +22,36 @@
 .method public initializeTo0()V
   .limit locals 1
   .limit stack 3
+  aload_0
   new CustomPoint
   dup
   invokenonvirtual CustomPoint/<init>()V
-  dup
-  aload_0
-  swap
   putfield DungeonInfos/dimension LCustomPoint;
-  pop
+  aload_0
   new java/util/Vector
   dup
   invokenonvirtual java/util/Vector/<init>()V
-  dup
-  aload_0
-  swap
   putfield DungeonInfos/monsters Ljava/util/Vector;
-  pop
+  aload_0
   new java/util/Vector
   dup
   invokenonvirtual java/util/Vector/<init>()V
-  dup
-  aload_0
-  swap
   putfield DungeonInfos/upstairs Ljava/util/Vector;
-  pop
+  aload_0
   new java/util/Vector
   dup
   invokenonvirtual java/util/Vector/<init>()V
-  dup
-  aload_0
-  swap
   putfield DungeonInfos/downstairs Ljava/util/Vector;
-  pop
+  aload_0
   new java/util/Vector
   dup
   invokenonvirtual java/util/Vector/<init>()V
-  dup
-  aload_0
-  swap
   putfield DungeonInfos/treasures Ljava/util/Vector;
-  pop
+  aload_0
   new java/util/Vector
   dup
   invokenonvirtual java/util/Vector/<init>()V
-  dup
-  aload_0
-  swap
   putfield DungeonInfos/heros Ljava/util/Vector;
-  pop
   return
 .end method
 
@@ -79,18 +61,13 @@
   new joos/lib/JoosIO
   dup
   invokenonvirtual joos/lib/JoosIO/<init>()V
-  dup
   astore_1
-  pop
   aload_1
   invokevirtual joos/lib/JoosIO/readLine()Ljava/lang/String;
-  dup
   astore_2
-  pop
   start_0:
   aload_2
-  aconst_null
-  if_acmpne true_3
+  ifnonnull true_3
   iconst_0
   goto stop_4
   true_3:
@@ -112,14 +89,10 @@
   ifeq stop_1
   aload_1
   invokevirtual joos/lib/JoosIO/readInt()I
-  dup
   istore_3
-  pop
   aload_1
   invokevirtual joos/lib/JoosIO/readInt()I
-  dup
   istore 4
-  pop
   aload_2
   ldc "Room"
   invokevirtual java/lang/String/equals(Ljava/lang/Object;)Z
@@ -210,9 +183,7 @@
   stop_9:
   aload_1
   invokevirtual joos/lib/JoosIO/readLine()Ljava/lang/String;
-  dup
   astore_2
-  pop
   goto start_0
   stop_1:
   return
@@ -224,7 +195,6 @@
   aload_0
   getfield DungeonInfos/dimension LCustomPoint;
   areturn
-  nop
 .end method
 
 .method public getMonsters()Ljava/util/Vector;
@@ -233,7 +203,6 @@
   aload_0
   getfield DungeonInfos/monsters Ljava/util/Vector;
   areturn
-  nop
 .end method
 
 .method public getUpstairs()Ljava/util/Vector;
@@ -242,7 +211,6 @@
   aload_0
   getfield DungeonInfos/upstairs Ljava/util/Vector;
   areturn
-  nop
 .end method
 
 .method public getDownstairs()Ljava/util/Vector;
@@ -251,7 +219,6 @@
   aload_0
   getfield DungeonInfos/downstairs Ljava/util/Vector;
   areturn
-  nop
 .end method
 
 .method public getTreasures()Ljava/util/Vector;
@@ -260,7 +227,6 @@
   aload_0
   getfield DungeonInfos/treasures Ljava/util/Vector;
   areturn
-  nop
 .end method
 
 .method public getHeros()Ljava/util/Vector;
@@ -269,6 +235,5 @@
   aload_0
   getfield DungeonInfos/heros Ljava/util/Vector;
   areturn
-  nop
 .end method
 

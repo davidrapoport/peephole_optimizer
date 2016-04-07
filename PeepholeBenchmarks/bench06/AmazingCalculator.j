@@ -15,13 +15,7 @@
   .limit stack 4
   iload_1
   iconst_0
-  if_icmpeq true_2
-  iconst_0
-  goto stop_3
-  true_2:
-  iconst_1
-  stop_3:
-  ifeq else_0
+  if_icmpne else_0
   iconst_1
   ireturn
   goto stop_1
@@ -35,7 +29,6 @@
   imul
   ireturn
   stop_1:
-  nop
 .end method
 
 .method public bla()V

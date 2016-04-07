@@ -14,13 +14,10 @@
 
 .method public final setComplementNumber(I)V
   .limit locals 2
-  .limit stack 3
-  iload_1
-  dup
+  .limit stack 2
   aload_0
-  swap
+  iload_1
   putfield Woman/complementNumber I
-  pop
   return
 .end method
 

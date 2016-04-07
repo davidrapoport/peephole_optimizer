@@ -7,18 +7,15 @@
 
 .method public <init>()V
   .limit locals 1
-  .limit stack 3
+  .limit stack 4
   aload_0
   invokenonvirtual java/lang/Object/<init>()V
+  aload_0
   new joos/lib/JoosRandom
   dup
   iconst_1
   invokenonvirtual joos/lib/JoosRandom/<init>(I)V
-  dup
-  aload_0
-  swap
   putfield ComplementsGenerator/r Ljoos/lib/JoosRandom;
-  pop
   return
 .end method
 
@@ -28,24 +25,14 @@
   aload_0
   getfield ComplementsGenerator/r Ljoos/lib/JoosRandom;
   invokevirtual joos/lib/JoosRandom/nextInt()I
-  dup
   istore 4
-  pop
   iload 4
   ldc 12
   irem
-  dup
   istore 5
-  pop
   iload 5
   iconst_0
-  if_icmplt true_2
-  iconst_0
-  goto stop_3
-  true_2:
-  iconst_1
-  stop_3:
-  ifeq else_0
+  if_icmpge else_0
   iload 5
   ldc 12
   iadd
@@ -56,23 +43,14 @@
   pop
   goto stop_1
   else_0:
-  iload 5
-  dup
   aload_0
-  swap
+  iload 5
   putfield ComplementsGenerator/complementNumber I
-  pop
   stop_1:
   aload_0
   getfield ComplementsGenerator/complementNumber I
   iconst_0
-  if_icmpeq true_6
-  iconst_0
-  goto stop_7
-  true_6:
-  iconst_1
-  stop_7:
-  ifeq else_4
+  if_icmpne else_4
   ldc "I love how your hair smells like  a "
   dup
   ifnull null_18
@@ -176,13 +154,7 @@
   aload_0
   getfield ComplementsGenerator/complementNumber I
   iconst_1
-  if_icmpeq true_34
-  iconst_0
-  goto stop_35
-  true_34:
-  iconst_1
-  stop_35:
-  ifeq else_32
+  if_icmpne else_32
   ldc "I always admired you're "
   dup
   ifnull null_42
@@ -254,13 +226,7 @@
   aload_0
   getfield ComplementsGenerator/complementNumber I
   iconst_2
-  if_icmpeq true_54
-  iconst_0
-  goto stop_55
-  true_54:
-  iconst_1
-  stop_55:
-  ifeq else_52
+  if_icmpne else_52
   ldc "You remind me of my "
   dup
   ifnull null_62
@@ -332,13 +298,7 @@
   aload_0
   getfield ComplementsGenerator/complementNumber I
   iconst_3
-  if_icmpeq true_74
-  iconst_0
-  goto stop_75
-  true_74:
-  iconst_1
-  stop_75:
-  ifeq else_72
+  if_icmpne else_72
   ldc "I was "
   dup
   ifnull null_82
@@ -410,13 +370,7 @@
   aload_0
   getfield ComplementsGenerator/complementNumber I
   iconst_4
-  if_icmpeq true_94
-  iconst_0
-  goto stop_95
-  true_94:
-  iconst_1
-  stop_95:
-  ifeq else_92
+  if_icmpne else_92
   ldc "I can't wait to show you my "
   dup
   ifnull null_102
@@ -488,13 +442,7 @@
   aload_0
   getfield ComplementsGenerator/complementNumber I
   iconst_5
-  if_icmpeq true_114
-  iconst_0
-  goto stop_115
-  true_114:
-  iconst_1
-  stop_115:
-  ifeq else_112
+  if_icmpne else_112
   ldc "If you'll leave me it will be a "
   dup
   ifnull null_122
@@ -566,13 +514,7 @@
   aload_0
   getfield ComplementsGenerator/complementNumber I
   ldc 6
-  if_icmpeq true_134
-  iconst_0
-  goto stop_135
-  true_134:
-  iconst_1
-  stop_135:
-  ifeq else_132
+  if_icmpne else_132
   ldc "I hope our "
   dup
   ifnull null_146
@@ -676,13 +618,7 @@
   aload_0
   getfield ComplementsGenerator/complementNumber I
   ldc 7
-  if_icmpeq true_162
-  iconst_0
-  goto stop_163
-  true_162:
-  iconst_1
-  stop_163:
-  ifeq else_160
+  if_icmpne else_160
   ldc "You make me want to be a "
   dup
   ifnull null_170
@@ -754,13 +690,7 @@
   aload_0
   getfield ComplementsGenerator/complementNumber I
   ldc 8
-  if_icmpeq true_182
-  iconst_0
-  goto stop_183
-  true_182:
-  iconst_1
-  stop_183:
-  ifeq else_180
+  if_icmpne else_180
   ldc "Show me that "
   dup
   ifnull null_190
@@ -832,13 +762,7 @@
   aload_0
   getfield ComplementsGenerator/complementNumber I
   ldc 9
-  if_icmpeq true_202
-  iconst_0
-  goto stop_203
-  true_202:
-  iconst_1
-  stop_203:
-  ifeq else_200
+  if_icmpne else_200
   ldc "Let's "
   dup
   ifnull null_210
@@ -910,13 +834,7 @@
   aload_0
   getfield ComplementsGenerator/complementNumber I
   ldc 10
-  if_icmpeq true_222
-  iconst_0
-  goto stop_223
-  true_222:
-  iconst_1
-  stop_223:
-  ifeq else_220
+  if_icmpne else_220
   ldc "Show me your "
   dup
   ifnull null_226
@@ -1062,7 +980,6 @@
   stop_53:
   stop_33:
   stop_5:
-  nop
 .end method
 
 .method public getComplementNumber()I
@@ -1071,7 +988,6 @@
   aload_0
   getfield ComplementsGenerator/complementNumber I
   ireturn
-  nop
 .end method
 
 .method public generateAdjective()Ljava/lang/String;
@@ -1082,144 +998,78 @@
   invokevirtual joos/lib/JoosRandom/nextInt()I
   ldc 10
   irem
-  dup
   istore_1
-  pop
   iload_1
   iconst_0
-  if_icmplt true_2
-  iconst_0
-  goto stop_3
-  true_2:
-  iconst_1
-  stop_3:
-  ifeq else_0
+  if_icmpge else_0
   iload_1
   ldc 10
   iadd
-  dup
   istore_2
-  pop
   goto stop_1
   else_0:
   iload_1
-  dup
   istore_2
-  pop
   stop_1:
   iload_2
   iconst_0
-  if_icmpeq true_6
-  iconst_0
-  goto stop_7
-  true_6:
-  iconst_1
-  stop_7:
-  ifeq else_4
+  if_icmpne else_4
   ldc "dead"
   areturn
   goto stop_5
   else_4:
   iload_2
   iconst_1
-  if_icmpeq true_10
-  iconst_0
-  goto stop_11
-  true_10:
-  iconst_1
-  stop_11:
-  ifeq else_8
+  if_icmpne else_8
   ldc "beautiful"
   areturn
   goto stop_9
   else_8:
   iload_2
   iconst_2
-  if_icmpeq true_14
-  iconst_0
-  goto stop_15
-  true_14:
-  iconst_1
-  stop_15:
-  ifeq else_12
+  if_icmpne else_12
   ldc "single"
   areturn
   goto stop_13
   else_12:
   iload_2
   iconst_3
-  if_icmpeq true_18
-  iconst_0
-  goto stop_19
-  true_18:
-  iconst_1
-  stop_19:
-  ifeq else_16
+  if_icmpne else_16
   ldc "blind"
   areturn
   goto stop_17
   else_16:
   iload_2
   iconst_4
-  if_icmpeq true_22
-  iconst_0
-  goto stop_23
-  true_22:
-  iconst_1
-  stop_23:
-  ifeq else_20
+  if_icmpne else_20
   ldc "enormous"
   areturn
   goto stop_21
   else_20:
   iload_2
   iconst_5
-  if_icmpeq true_26
-  iconst_0
-  goto stop_27
-  true_26:
-  iconst_1
-  stop_27:
-  ifeq else_24
+  if_icmpne else_24
   ldc "sexy"
   areturn
   goto stop_25
   else_24:
   iload_2
   ldc 6
-  if_icmpeq true_30
-  iconst_0
-  goto stop_31
-  true_30:
-  iconst_1
-  stop_31:
-  ifeq else_28
+  if_icmpne else_28
   ldc "talented"
   areturn
   goto stop_29
   else_28:
   iload_2
   ldc 7
-  if_icmpeq true_34
-  iconst_0
-  goto stop_35
-  true_34:
-  iconst_1
-  stop_35:
-  ifeq else_32
+  if_icmpne else_32
   ldc "better"
   areturn
   goto stop_33
   else_32:
   iload_2
   ldc 8
-  if_icmpeq true_38
-  iconst_0
-  goto stop_39
-  true_38:
-  iconst_1
-  stop_39:
-  ifeq else_36
+  if_icmpne else_36
   ldc "happy"
   areturn
   goto stop_37
@@ -1235,7 +1085,6 @@
   stop_13:
   stop_9:
   stop_5:
-  nop
 .end method
 
 .method public generateNoun()Ljava/lang/String;
@@ -1246,131 +1095,71 @@
   invokevirtual joos/lib/JoosRandom/nextInt()I
   ldc 9
   irem
-  dup
   istore_1
-  pop
   iload_1
   iconst_0
-  if_icmplt true_2
-  iconst_0
-  goto stop_3
-  true_2:
-  iconst_1
-  stop_3:
-  ifeq else_0
+  if_icmpge else_0
   iload_1
   ldc 9
   iadd
-  dup
   istore_2
-  pop
   goto stop_1
   else_0:
   iload_1
-  dup
   istore_2
-  pop
   stop_1:
   iload_1
   iconst_0
-  if_icmpeq true_6
-  iconst_0
-  goto stop_7
-  true_6:
-  iconst_1
-  stop_7:
-  ifeq else_4
+  if_icmpne else_4
   ldc "fruit"
   areturn
   goto stop_5
   else_4:
   iload_2
   iconst_1
-  if_icmpeq true_10
-  iconst_0
-  goto stop_11
-  true_10:
-  iconst_1
-  stop_11:
-  ifeq else_8
+  if_icmpne else_8
   ldc "work-ethic"
   areturn
   goto stop_9
   else_8:
   iload_2
   iconst_2
-  if_icmpeq true_14
-  iconst_0
-  goto stop_15
-  true_14:
-  iconst_1
-  stop_15:
-  ifeq else_12
+  if_icmpne else_12
   ldc "niece"
   areturn
   goto stop_13
   else_12:
   iload_2
   iconst_3
-  if_icmpeq true_18
-  iconst_0
-  goto stop_19
-  true_18:
-  iconst_1
-  stop_19:
-  ifeq else_16
+  if_icmpne else_16
   ldc "problems"
   areturn
   goto stop_17
   else_16:
   iload_2
   iconst_4
-  if_icmpeq true_22
-  iconst_0
-  goto stop_23
-  true_22:
-  iconst_1
-  stop_23:
-  ifeq else_20
+  if_icmpne else_20
   ldc "tragedy"
   areturn
   goto stop_21
   else_20:
   iload_2
   iconst_5
-  if_icmpeq true_26
-  iconst_0
-  goto stop_27
-  true_26:
-  iconst_1
-  stop_27:
-  ifeq else_24
+  if_icmpne else_24
   ldc "dream"
   areturn
   goto stop_25
   else_24:
   iload_2
   ldc 6
-  if_icmpeq true_30
-  iconst_0
-  goto stop_31
-  true_30:
-  iconst_1
-  stop_31:
-  ifeq else_28
+  if_icmpne else_28
   ldc "sunshine"
   areturn
   goto stop_29
   else_28:
   iload_2
   ldc 7
-  if_icmpeq true_34
-  iconst_0
-  goto stop_35
-  true_34:
-  iconst_1
-  stop_35:
-  ifeq else_32
+  if_icmpne else_32
   ldc "raccoon"
   areturn
   goto stop_33
@@ -1385,7 +1174,6 @@
   stop_13:
   stop_9:
   stop_5:
-  nop
 .end method
 
 .method public generateVerb()Ljava/lang/String;
@@ -1396,144 +1184,78 @@
   invokevirtual joos/lib/JoosRandom/nextInt()I
   ldc 10
   irem
-  dup
   istore_1
-  pop
   iload_1
   iconst_0
-  if_icmplt true_2
-  iconst_0
-  goto stop_3
-  true_2:
-  iconst_1
-  stop_3:
-  ifeq else_0
+  if_icmpge else_0
   iload_1
   ldc 10
   iadd
-  dup
   istore_2
-  pop
   goto stop_1
   else_0:
   iload_1
-  dup
   istore_2
-  pop
   stop_1:
   iload_1
   iconst_0
-  if_icmpeq true_6
-  iconst_0
-  goto stop_7
-  true_6:
-  iconst_1
-  stop_7:
-  ifeq else_4
+  if_icmpne else_4
   ldc "rot"
   areturn
   goto stop_5
   else_4:
   iload_2
   iconst_1
-  if_icmpeq true_10
-  iconst_0
-  goto stop_11
-  true_10:
-  iconst_1
-  stop_11:
-  ifeq else_8
+  if_icmpne else_8
   ldc "cry"
   areturn
   goto stop_9
   else_8:
   iload_2
   iconst_2
-  if_icmpeq true_14
-  iconst_0
-  goto stop_15
-  true_14:
-  iconst_1
-  stop_15:
-  ifeq else_12
+  if_icmpne else_12
   ldc "puke"
   areturn
   goto stop_13
   else_12:
   iload_2
   iconst_3
-  if_icmpeq true_18
-  iconst_0
-  goto stop_19
-  true_18:
-  iconst_1
-  stop_19:
-  ifeq else_16
+  if_icmpne else_16
   ldc "work"
   areturn
   goto stop_17
   else_16:
   iload_2
   iconst_4
-  if_icmpeq true_22
-  iconst_0
-  goto stop_23
-  true_22:
-  iconst_1
-  stop_23:
-  ifeq else_20
+  if_icmpne else_20
   ldc "sleep"
   areturn
   goto stop_21
   else_20:
   iload_2
   iconst_5
-  if_icmpeq true_26
-  iconst_0
-  goto stop_27
-  true_26:
-  iconst_1
-  stop_27:
-  ifeq else_24
+  if_icmpne else_24
   ldc "be-pleased"
   areturn
   goto stop_25
   else_24:
   iload_2
   ldc 6
-  if_icmpeq true_30
-  iconst_0
-  goto stop_31
-  true_30:
-  iconst_1
-  stop_31:
-  ifeq else_28
+  if_icmpne else_28
   ldc "flourish"
   areturn
   goto stop_29
   else_28:
   iload_2
   ldc 7
-  if_icmpeq true_34
-  iconst_0
-  goto stop_35
-  true_34:
-  iconst_1
-  stop_35:
-  ifeq else_32
+  if_icmpne else_32
   ldc "nibble"
   areturn
   goto stop_33
   else_32:
   iload_2
   ldc 8
-  if_icmpeq true_38
-  iconst_0
-  goto stop_39
-  true_38:
-  iconst_1
-  stop_39:
-  ifeq else_36
+  if_icmpne else_36
   ldc "program"
   areturn
   goto stop_37
@@ -1549,6 +1271,5 @@
   stop_13:
   stop_9:
   stop_5:
-  nop
 .end method
 

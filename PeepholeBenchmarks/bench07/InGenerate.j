@@ -114,8 +114,6 @@
   invokevirtual joos/lib/JoosIO/println(Ljava/lang/String;)V
   stop_28:
   iinc 1 1
-  iload_1
-  istore_1
   goto start_0
   stop_1:
   return

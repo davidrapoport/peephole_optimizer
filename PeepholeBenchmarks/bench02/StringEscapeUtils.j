@@ -39,7 +39,6 @@
   astore_2
   aload_2
   areturn
-  nop
 .end method
 
 .method public replace(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
@@ -49,18 +48,10 @@
   aload_2
   iconst_0
   invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
-  dup
   istore 5
-  pop
   iload 5
   iconst_0
-  if_icmpge true_1
-  iconst_0
-  goto stop_2
-  true_1:
-  iconst_1
-  stop_2:
-  ifeq stop_0
+  if_icmplt stop_0
   aload_1
   iconst_0
   iload 5
@@ -116,6 +107,5 @@
   stop_0:
   aload_1
   areturn
-  nop
 .end method
 

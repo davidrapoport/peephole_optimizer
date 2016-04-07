@@ -16,13 +16,7 @@
   aload_0
   getfield Woman/complementNumber I
   iconst_0
-  if_icmpeq true_2
-  iconst_0
-  goto stop_3
-  true_2:
-  iconst_1
-  stop_3:
-  ifeq else_0
+  if_icmpne else_0
   ldc "This is highly inappropriate."
   areturn
   goto stop_1
@@ -30,13 +24,7 @@
   aload_0
   getfield Woman/complementNumber I
   iconst_1
-  if_icmpeq true_6
-  iconst_0
-  goto stop_7
-  true_6:
-  iconst_1
-  stop_7:
-  ifeq else_4
+  if_icmpne else_4
   aload_3
   ldc "work-ethic"
   invokevirtual java/lang/String/equals(Ljava/lang/Object;)Z
@@ -64,7 +52,7 @@
   ifeq else_8
   ldc "I feel a promotion coming your way!!"
   areturn
-  goto stop_9
+  goto stop_5
   else_8:
   ldc "get out of my office."
   areturn
@@ -74,13 +62,7 @@
   aload_0
   getfield Woman/complementNumber I
   iconst_2
-  if_icmpeq true_15
-  iconst_0
-  goto stop_16
-  true_15:
-  iconst_1
-  stop_16:
-  ifeq else_13
+  if_icmpne else_13
   ldc "are you familiar with the term sexual harassment?"
   areturn
   goto stop_14
@@ -88,13 +70,7 @@
   aload_0
   getfield Woman/complementNumber I
   iconst_3
-  if_icmpeq true_19
-  iconst_0
-  goto stop_20
-  true_19:
-  iconst_1
-  stop_20:
-  ifeq else_17
+  if_icmpne else_17
   ldc "I am your boss, you know."
   areturn
   goto stop_18
@@ -102,13 +78,7 @@
   aload_0
   getfield Woman/complementNumber I
   iconst_4
-  if_icmpeq true_23
-  iconst_0
-  goto stop_24
-  true_23:
-  iconst_1
-  stop_24:
-  ifeq else_21
+  if_icmpne else_21
   aload_3
   ldc "work-ethic"
   invokevirtual java/lang/String/equals(Ljava/lang/Object;)Z
@@ -128,7 +98,7 @@
   ifeq else_25
   ldc "I'm impressed, you are hired."
   areturn
-  goto stop_26
+  goto stop_22
   else_25:
   ldc "get out of my office, you sick sick man."
   areturn
@@ -138,13 +108,7 @@
   aload_0
   getfield Woman/complementNumber I
   iconst_5
-  if_icmpeq true_32
-  iconst_0
-  goto stop_33
-  true_32:
-  iconst_1
-  stop_33:
-  ifeq else_30
+  if_icmpne else_30
   ldc "If I was your girlfriend, that might have been funny. you are fired."
   areturn
   goto stop_31
@@ -152,13 +116,7 @@
   aload_0
   getfield Woman/complementNumber I
   ldc 6
-  if_icmpeq true_36
-  iconst_0
-  goto stop_37
-  true_36:
-  iconst_1
-  stop_37:
-  ifeq else_34
+  if_icmpne else_34
   ldc "who the hell do you think you are talking to??"
   areturn
   goto stop_35
@@ -166,13 +124,7 @@
   aload_0
   getfield Woman/complementNumber I
   ldc 7
-  if_icmpeq true_40
-  iconst_0
-  goto stop_41
-  true_40:
-  iconst_1
-  stop_41:
-  ifeq else_38
+  if_icmpne else_38
   aload_2
   ldc "better"
   invokevirtual java/lang/String/equals(Ljava/lang/Object;)Z
@@ -207,7 +159,7 @@
   ifeq else_42
   ldc "you have a slippery tongue..well done"
   areturn
-  goto stop_43
+  goto stop_39
   else_42:
   ldc "get out of my office."
   areturn
@@ -217,20 +169,14 @@
   aload_0
   getfield Woman/complementNumber I
   ldc 8
-  if_icmpeq true_50
-  iconst_0
-  goto stop_51
-  true_50:
-  iconst_1
-  stop_51:
-  ifeq else_48
+  if_icmpne else_48
   aload_3
   ldc "work-ethic"
   invokevirtual java/lang/String/equals(Ljava/lang/Object;)Z
   ifeq else_52
   ldc "that's a strange proposal, but Ive heard worse.."
   areturn
-  goto stop_53
+  goto stop_49
   else_52:
   ldc "you are going to have hard time keeping your job like that."
   areturn
@@ -240,13 +186,7 @@
   aload_0
   getfield Woman/complementNumber I
   ldc 9
-  if_icmpeq true_56
-  iconst_0
-  goto stop_57
-  true_56:
-  iconst_1
-  stop_57:
-  ifeq else_54
+  if_icmpne else_54
   aload 4
   ldc "work"
   invokevirtual java/lang/String/equals(Ljava/lang/Object;)Z
@@ -274,7 +214,7 @@
   ifeq else_58
   ldc "let's indeed! you are a very talented young man.."
   areturn
-  goto stop_59
+  goto stop_55
   else_58:
   ldc "are you familiar with the term sexual harassment?"
   areturn
@@ -284,13 +224,7 @@
   aload_0
   getfield Woman/complementNumber I
   ldc 10
-  if_icmpeq true_65
-  iconst_0
-  goto stop_66
-  true_65:
-  iconst_1
-  stop_66:
-  ifeq else_63
+  if_icmpne else_63
   aload_3
   ldc "work-ethic"
   invokevirtual java/lang/String/equals(Ljava/lang/Object;)Z
@@ -311,7 +245,7 @@
   ifeq else_67
   ldc "I don't understand exactly what you want, but whatever."
   areturn
-  goto stop_68
+  goto stop_64
   else_67:
   ldc "get out of my office, you pervert."
   areturn
@@ -331,6 +265,5 @@
   stop_14:
   stop_5:
   stop_1:
-  nop
 .end method
 

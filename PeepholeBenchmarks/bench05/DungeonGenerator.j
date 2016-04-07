@@ -16,24 +16,18 @@
   new DungeonInfos
   dup
   invokenonvirtual DungeonInfos/<init>()V
-  dup
   astore_1
-  pop
   aload_1
   invokevirtual DungeonInfos/initializeFromStdIn()V
   new Dungeon
   dup
   aload_1
   invokenonvirtual Dungeon/<init>(LDungeonInfos;)V
-  dup
   astore_2
-  pop
   new joos/lib/JoosIO
   dup
   invokenonvirtual joos/lib/JoosIO/<init>()V
-  dup
   astore_3
-  pop
   aload_2
   invokevirtual Dungeon/draw()V
   return

@@ -60,13 +60,9 @@
   aload 7
   invokevirtual java/util/Vector/addElement(Ljava/lang/Object;)V
   iinc 3 1
-  iload_3
-  istore_3
   goto start_4
   stop_5:
   iinc 2 1
-  iload_2
-  istore_2
   goto start_0
   stop_1:
   return
@@ -195,8 +191,6 @@
   invokevirtual java/util/Vector/elementAt(I)Ljava/lang/Object;
   astore 6
   iinc 5 1
-  iload 5
-  istore 5
   new java/lang/Integer
   dup
   iconst_0
@@ -223,8 +217,6 @@
   stop_19:
   stop_9:
   iinc 3 1
-  iload_3
-  istore_3
   goto start_4
   stop_5:
   iload_2
@@ -261,15 +253,11 @@
   false_36:
   ifeq stop_35
   iinc 4 1
-  iload 4
-  istore 4
   stop_35:
   aload_1
   ldc "\n"
   invokevirtual joos/lib/JoosIO/print(Ljava/lang/String;)V
   iinc 2 1
-  iload_2
-  istore_2
   goto start_0
   stop_1:
   return
