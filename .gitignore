@@ -1,3 +1,5 @@
 *.class
 *.optdump
 *.dump
+*.o
+
