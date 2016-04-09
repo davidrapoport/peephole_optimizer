@@ -424,6 +424,28 @@ int improve_branching(CODE **c)
   return 0;
 }
 
+int goto_ifeq(CODE **c) {
+    int x, l, l2;
+    if (is_ldc_int(*c, &x) &&
+        x==0 &&
+        is_goto(next(*c), &l) &&
+        is_ifeq(next(destination(l)), &l2) && l>l2) {
+        droplabel(l);
+        copylabel(l2);
+        return replace(c, 2, makeCODEgoto(l2, NULL));
+    }
+    else if (is_ldc_int(*c, &x) &&
+        x!=0 && x>=-128 && x<=127 &&
+        is_goto(next(*c), &l) &&
+        is_ifne(next(destination(l)), &l2) && l>l2) {
+        droplabel(l);
+        copylabel(l2);
+        return replace(c, 2, makeCODEgoto(l2, NULL));
+    }
+    return 0;
+}
+
+
 /**
  * Same idea as improve branching, but expects them all to be in a row 
  * This means it doesn't follow branches, it just goes 6 peepholes down
@@ -680,6 +702,49 @@ int dropDeadLabels(CODE **c)
   return 0;
 }
 
+/* Many occurrences of the following pattern:
+ * ldc "I was"
+ * dup
+ * ifnull nulll_82
+ * goto stop_83
+ * null_82:
+ * pop
+ * ldc "null"
+ * stop_83:
+ * This is obviously very unnecessary and can simply be replaced by the original ldc "I was"
+ * Occurs over and over again in ComplementsGenerator
+*/
+
+int remove_dead_nullcheck(CODE **c) {
+    CODE *current;
+    char *loadedString, *garbage;
+    int nullLabel, nullLabelBranch, stopLabel, stopLabelBranch;
+    /*Get loaded string and ensure dup is next */
+    if (is_ldc_string(*c, &loadedString) && is_dup(next(*c))) {
+        current = next(next(*c));
+        /* Check that ifnull is next and the null label it points to is unique */
+        if(is_ifnull(current, &nullLabelBranch) && uniquelabel(nullLabelBranch)) {
+            current = next(current);
+            /* Check that next is goto and that the stop label it points to is unique */
+            if(is_goto(current, &stopLabelBranch) && uniquelabel(stopLabelBranch)) {
+                current = next(current);
+                /* Check that null label is next, and that it is in fact the one we found earlier */
+                if(is_label(current, &nullLabel) && nullLabelBranch==nullLabel) {
+                    current = next(current);
+                    /* Check that the pattern still fits within the null label */
+                    if(is_pop(current) && is_ldc_string(next(current), &garbage)) {
+                        current = next(next(current));
+                        /* Check that we're now at the stop label and the wild ride of dead code is over */
+                        if(is_label(current, &stopLabel) && stopLabelBranch==stopLabel) {
+                            return replace(c, 8, makeCODEldc_string(loadedString, NULL));
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return 0;
+}
 
 
 int init_patterns()
@@ -698,6 +763,8 @@ int init_patterns()
   ADD_PATTERN(improve_branching2);
   ADD_PATTERN(remove_nop);
   ADD_PATTERN(change_to_zero_comparison); /* Not very useful because the compiler doesnt support iflt */
+          ADD_PATTERN(remove_dead_nullcheck);    
+
   /* ADD_PATTERN(positive_increment_no_store); Makes things worse */
  /* ADD_PATTERN(improve_branching); */
   /*ADD_PATTERN(dropDeadLabels);*/

@@ -1,0 +1,15 @@
+BacktrackSolver.optdump:;         code_length 5
+BacktrackSolver.optdump:;         code_length 36
+BacktrackSolver.optdump:;         code_length 36
+BacktrackSolver.optdump:;         code_length 31
+BacktrackSolver.optdump:;         code_length 31
+BacktrackSolver.optdump:;         code_length 68
+BacktrackSolver.optdump:;         code_length 48
+BacktrackSolver.optdump:;         code_length 111
+BacktrackSolver.optdump:;         code_length 26
+BacktrackSolver.optdump:;         code_length 7
+Benchmark.optdump:;         code_length 5
+Benchmark.optdump:;         code_length 70
+SudokuSolver.optdump:;         code_length 5
+SudokuSolver.optdump:;         code_length 105
+SudokuSolver.optdump:;         code_length 298

@@ -1,0 +1,17 @@
+AmazingCalculator.optdump:;         code_length 5
+AmazingCalculator.optdump:;         code_length 20
+AmazingCalculator.optdump:;         code_length 1
+ComplementsGenerator.optdump:;         code_length 17
+ComplementsGenerator.optdump:;         code_length 1099
+ComplementsGenerator.optdump:;         code_length 5
+ComplementsGenerator.optdump:;         code_length 131
+ComplementsGenerator.optdump:;         code_length 119
+ComplementsGenerator.optdump:;         code_length 131
+FemaleBoss.optdump:;         code_length 5
+FemaleBoss.optdump:;         code_length 409
+GirlFriend.optdump:;         code_length 5
+GirlFriend.optdump:;         code_length 891
+Main.optdump:;         code_length 5
+Main.optdump:;         code_length 429
+Woman.optdump:;         code_length 5
+Woman.optdump:;         code_length 6

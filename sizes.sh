@@ -4,6 +4,8 @@
 # usage: joosc [-O] f1.java f2.java ... fn.joos
 # note: you should name each source file for ordinary classes with
 # .java extensions and all external classes with .joos extensions
+rm *.class
+rm *.optdump
 if ( { $PEEPDIR/joos $* } ) then
 	foreach f ( $* )
 		if ( $f != "-O" && $f:e != "joos" ) then
@@ -15,10 +17,4 @@ if ( { $PEEPDIR/joos $* } ) then
 			endif
 		endif
 	end
-	echo "----- Method code sizes ----"
-	if ( $1 == "-O" ) then
-		grep -a code_length *.optdump 
-	else
-		grep -a code_length *.dump
-	endif
 endif
