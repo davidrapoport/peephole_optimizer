@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+import java.text.DecimalFormat;
 
 class Benchmark {
     private int number;
@@ -163,12 +164,14 @@ class MethodComparison implements Comparable<MethodComparison> {
 
     @Override
     public String toString() {
-        String tostring = benchmark + ":file- " + fileName + ", Method # " + methodNumber + " is ";
+        DecimalFormat df = new DecimalFormat("#,###,##0.00");
+        String formatted = df.format(this.bloat()); 
+        String tostring = benchmark + ": " + fileName + ", " + methodNumber + " is ";
         if(this.difference() >= 0)
-            tostring += this.difference() + " lines " + aPlus + " - " + ours + " longer than APlus";
+            tostring += this.difference() + " lines longer than APlus (" + aPlus + ") ";
         else
             tostring += (this.difference() * -1) + "lines shorter than APlus";
-        return tostring + "with efficiency: " + this.bloat();
+        return tostring + "with efficiency: " + formatted;
     }
 }
 
