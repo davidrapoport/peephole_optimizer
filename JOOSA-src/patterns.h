@@ -657,6 +657,16 @@ int fix_incorrect_labels(CODE **c)
 	return 0;
 }
 
+int improve_areturn(CODE **c) {
+	int garbage;
+	CODE *second = next(*c);
+	if(is_areturn(*c) && second != NULL) {
+		if(is_label(second, &garbage) == 0)
+			return replace_modified(c, 2, makeCODEareturn(NULL));
+	}
+	return 0;
+}
+
 
 /*
  * seg faults. Idk why
@@ -732,16 +742,6 @@ int consolidateEqualToZero(CODE **c) {
 		if(constant == 0 && is_if_icmpne(next(*c), &label)) {
 			return replace(c, 2, makeCODEifne(label, NULL)); 
 		}
-	}
-	return 0;
-}
-
-int improve_areturn(CODE **c) {
-	int garbage;
-	CODE *second = next(*c);
-	if(is_areturn(*c) && second != NULL) {
-		if(is_label(second, &garbage) == 0)
-			return replace_modified(c, 2, makeCODEareturn(NULL));
 	}
 	return 0;
 }
