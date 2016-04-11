@@ -375,44 +375,6 @@ int improve_branching(CODE **c)
 					{
 						return replace(c,3, makeCODEifnull(label2, NULL));
 					}
-						/*
-					if(is_ifne(*c,&labelFirstCond))
-					{
-						return replace(c,1, makeCODEifne(finalLabel,NULL));
-					}
-						if(is_if_acmpeq(*c,&labelFirstCond))
-					{
-						return replace(c,1, makeCODEif_acmpeq(finalLabel,NULL));
-					}
-						if(is_if_acmpne(*c,&labelFirstCond))
-					{
-						return replace(c,1, makeCODEif_acmpne(finalLabel,NULL));
-					}
-						if(is_if_icmpeq(*c,&labelFirstCond))
-					{
-						return replace(c,1, makeCODEif_icmpeq(finalLabel,NULL));
-					}
-						if(is_if_icmpgt(*c,&labelFirstCond))
-					{
-						return replace(c,1, makeCODEif_icmpgt(finalLabel,NULL));
-					}
-						if(is_if_icmplt(*c,&labelFirstCond))
-					{
-						return replace(c,1, makeCODEif_icmplt(finalLabel,NULL));
-					}
-						if(is_if_icmple(*c,&labelFirstCond))
-					{
-						return replace(c,1, makeCODEif_icmple(finalLabel,NULL));
-					}
-						if(is_if_icmpge(*c,&labelFirstCond))
-					{
-						return replace(c,1, makeCODEif_icmpge(finalLabel,NULL));
-					}
-						if(is_if_icmpne(*c,&labelFirstCond))
-					{
-						return replace(c,1, makeCODEif_icmpne(finalLabel,NULL));
-					}
-					*/
 			}
 			/* We have to reverse labelFirstCond */
 			else if (constFalse == 1 && constTrue == 0)
@@ -657,16 +619,6 @@ int fix_incorrect_labels(CODE **c)
 	return 0;
 }
 
-int improve_areturn(CODE **c) {
-	int garbage;
-	CODE *second = next(*c);
-	if(is_areturn(*c) && second != NULL) {
-		if(is_label(second, &garbage) == 0)
-			return replace_modified(c, 2, makeCODEareturn(NULL));
-	}
-	return 0;
-}
-
 
 /*
  * seg faults. Idk why
@@ -691,6 +643,28 @@ int dropDeadLabels(CODE **c)
 	return 0;
 }
 
+/* Simply removes dead instruction after areturn 
+so long as it is not at the end of the file or a label.
+(Otherwise we would disrupt and/or break the rest of the program)
+Lots of examples of this pattern can be found in unoptimized Room.j from benchmark 7:
+ldc ".."
+areturn
+goto stop_1
+
+Here we can remove goto stop_1.
+The next step would be to remove the trailing goto stop_n labels at the end of the program
+*/
+int improve_areturn(CODE **c) {
+	int garbage;
+	CODE *second = next(*c);
+	if(is_areturn(*c) && second != NULL) {
+		if(is_label(second, &garbage) == 0)
+			return replace_modified(c, 2, makeCODEareturn(NULL));
+	}
+	return 0;
+}
+
+
 /* Many occurrences of the following pattern:
  * ldc "I was"
  * dup
@@ -700,7 +674,7 @@ int dropDeadLabels(CODE **c)
  * pop
  * ldc "null"
  * stop_83:
- * This is obviously very unnecessary and can simply be replaced by the original ldc "I was"
+ * This is null check is unnecessary and can simply be replaced by the original ldc "I was"
  * Occurs over and over again in ComplementsGenerator
 */
 
@@ -735,7 +709,7 @@ int remove_dead_nullcheck(CODE **c) {
 		return 0;
 }
 
-/*Straightforward: instead of loadinng iconst_0 and then checking for equality, just use ifeq */
+/*Straightforward: instead of loadinng iconst_0 and then checking for inequality, just use ifne */
 int consolidateEqualToZero(CODE **c) {
 	int constant, label;
 	if(is_ldc_int(*c, &constant)) {
@@ -764,10 +738,5 @@ int init_patterns(){
 	ADD_PATTERN(remove_dead_nullcheck); 
 	ADD_PATTERN(consolidateEqualToZero);  
 	ADD_PATTERN(improve_areturn); 
-	/*ADD_PATTERN(positive_increment_no_store); Makes things worse 
-  	ADD_PATTERN(improve_branching); 
-	ADD_PATTERN(dropDeadLabels);
-  	ADD_PATTERN(remove_consecutive_labels);
-	ADD_PATTERN(fix_incorrect_labels); */
 	return 1;
 }
